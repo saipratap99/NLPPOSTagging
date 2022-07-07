@@ -22,6 +22,12 @@ object Main extends Serializable {
     for(sentence <- sentences)
       println(sentence)
 
+    val tagger = PosTagSelector.loadTagger("en").get
+//    val tagger = epic.models.deserialize[CRF[AnnotatedLabel, String]]("/home/hadoop/nlp")
+
+    val tags = tagger.bestSequence(sentences(0))
+
+    println(tags.render)
 
   }
 }
